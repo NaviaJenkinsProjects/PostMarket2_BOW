@@ -3386,7 +3386,7 @@ public class Navia_Login extends BaseClass {
 	public void user_click_the_basket_button() throws InterruptedException {
 
 		Thread.sleep(2000);
-		WebElement add1 = driver.findElement(By.xpath("//span[text()='Funds ']//parent::div"));
+		WebElement add1 = driver.findElement(By.xpath("//span[contains(text(),'Funds')]//parent::div"));
 
 		Actions a = new Actions(driver);
 		a.moveToElement(add1).perform();
@@ -3394,6 +3394,8 @@ public class Navia_Login extends BaseClass {
 
 		WebElement iframe = driver.findElement(By.xpath("//iframe[@class='iframe_window']"));
 		driver.switchTo().frame(iframe);
+		Thread.sleep(1000);
+		
 		WebElement element = driver.findElement(By.xpath("//h4[text()='Basket']//ancestor::div[@id='basket']"));
 		element.click();
 

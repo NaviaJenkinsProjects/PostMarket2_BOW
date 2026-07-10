@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Cucumber" time="196.099" tests="5" skipped="0" failures="0" errors="0">
-<testcase classname="Navia Online Trading Market Post Market Testing Nine FourtyFive Testing" name="Login Navia" time="62.19">
+<testsuite name="Cucumber" time="187.613" tests="5" skipped="0" failures="0" errors="0">
+<testcase classname="Navia Online Trading Market Post Market Testing Nine FourtyFive Testing" name="Login Navia" time="53.098">
 <system-out><![CDATA[
 Given User Navigate to Navia................................................passed
 When User Click login with client code......................................passed
@@ -12,7 +12,7 @@ And User Click Otp Verification and enter manualy...........................pass
 And User Click Login Again..................................................passed
 ]]></system-out>
 </testcase>
-<testcase classname="Navia Online Trading Market Post Market Testing Nine FourtyFive Testing" name="User Check  - Buy Back- functionality" time="35.818">
+<testcase classname="Navia Online Trading Market Post Market Testing Nine FourtyFive Testing" name="User Check  - Buy Back- functionality" time="34.809">
 <system-out><![CDATA[
 When Navigate to home page..................................................passed
 And User MouseOver Dashboard and Click Tools................................passed
@@ -21,7 +21,7 @@ And User Click Tools "Buy Back".............................................pass
 And User Verify Buy Back Page...............................................passed
 ]]></system-out>
 </testcase>
-<testcase classname="Navia Online Trading Market Post Market Testing Nine FourtyFive Testing" name="User Check  - Stock- functionality" time="21.428">
+<testcase classname="Navia Online Trading Market Post Market Testing Nine FourtyFive Testing" name="User Check  - Stock- functionality" time="22.658">
 <system-out><![CDATA[
 When Navigate to home page..................................................passed
 And User click the search box...............................................passed
@@ -29,7 +29,7 @@ And User Search any "tcs" Script............................................pass
 And User Mouse Over and Add a Script........................................passed
 ]]></system-out>
 </testcase>
-<testcase classname="Navia Online Trading Market Post Market Testing Nine FourtyFive Testing" name="User Check The Basket - CREATE - functionality" time="31.84">
+<testcase classname="Navia Online Trading Market Post Market Testing Nine FourtyFive Testing" name="User Check The Basket - CREATE - functionality" time="30.982">
 <system-out><![CDATA[
 When Navigate to home page..................................................passed
 And User MouseOver Dashboard and Click Tools button.........................passed
@@ -41,7 +41,7 @@ And User Click The Tools "Add" button and close.............................pass
 Then Next Page Shown........................................................passed
 ]]></system-out>
 </testcase>
-<testcase classname="Navia Online Trading Market Post Market Testing Nine FourtyFive Testing" name="User Check  - Basket- functionality" time="44.18">
+<testcase classname="Navia Online Trading Market Post Market Testing Nine FourtyFive Testing" name="User Check  - Basket- functionality" time="45.42">
 <system-out><![CDATA[
 When Navigate to home page..................................................passed
 And User mouse the scrip Selected "TCS".....................................passed

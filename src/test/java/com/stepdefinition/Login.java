@@ -1021,10 +1021,12 @@ public class Login extends BaseClass {
 
 		ac.moveToElement(dashBoard).perform();
 
-		Thread.sleep(3000);
+		Thread.sleep(2000);
+
+		driver.findElement(By.xpath("//label[text()='Tools']//ancestor::li")).click();Thread.sleep(1000);
 
 		driver.findElement(By.xpath("//label[text()='Tools']//ancestor::li")).click();
-
+		Thread.sleep(2000);
 	}
 
 	@When("User Click Basket")
@@ -1208,17 +1210,27 @@ public class Login extends BaseClass {
 
 		Thread.sleep(5000);
 
-		driver.findElement(By.xpath("//span[text()='"+string+"']//ancestor::div[@class='basket_box']")).click();
+		driver.findElement(By.xpath("(//span[text()='TEST']//ancestor::div[@class='basket_box'])[1]")).click();
 
 		Thread.sleep(1000);
 
-		driver.findElement(By.xpath("//button[text()='yes']")).click();
-		Thread.sleep(3000);
+		try {
+			
+			driver.findElement(By.xpath("//button[text()='yes']")).click();
+			Thread.sleep(3000);
+			driver.findElement(By.xpath("//button[text()='Close']")).click();
+			Thread.sleep(1000);
 
-		driver.findElement(By.xpath("//button[text()='Close']")).click();
-		Thread.sleep(1000);
+			driver.findElement(By.xpath("//button[@data-dhx-id='close']")).click();
+		} catch (Exception e) {
+			driver.findElement(By.xpath("//button[text()='Close']")).click();
+			Thread.sleep(1000);
 
-		driver.findElement(By.xpath("//button[@data-dhx-id='close']")).click();
+			driver.findElement(By.xpath("(//button[@data-dhx-id='close'])[2]")).click();
+		}
+		
+
+	
 
 	}
 
@@ -1539,8 +1551,29 @@ public class Login extends BaseClass {
 	public void user_click_tools(String string) throws InterruptedException {
 		Thread.sleep(2000);
 		
-		WebElement element2 = driver.findElement(By.xpath("//iframe[@class='iframe_window']"));
-		driver.switchTo().frame(element2);
+		try {
+			
+			WebElement element2 = driver.findElement(By.xpath("//iframe[@class='iframe_window']"));
+			driver.switchTo().frame(element2);
+			
+		} catch (Exception e) {
+			
+			try {
+				
+				driver.switchTo().defaultContent();
+				
+				WebElement element2 = driver.findElement(By.xpath("//iframe[@class='iframe_window']"));
+				driver.switchTo().frame(element2);
+				
+			} catch (Exception e2) {
+				
+				
+				driver.switchTo().frame(0);
+			}
+			
+		
+		}
+		
 
 		Thread.sleep(3000);
 		WebElement element = driver.findElement(By.xpath("//div[@class='menu_item']//descendant::h4[text()='Buy Back']"));
@@ -1572,17 +1605,7 @@ public class Login extends BaseClass {
 		driver.switchTo().window(li1.get(size));
 
 		driver.findElement(By.xpath("//button[@class='btn-status pastback-cnt nav-link']")).click();
-		
-//		driver.switchTo().defaultContent();
-//		
-//		List<WebElement> elements = driver.findElements(By.xpath(
-//				"//table[@class='table footable trade-plus-table footable-loaded default']/tbody/tr/td"));
-//
-//		Thread.sleep(2000);
-//		for (WebElement webElement : elements) {
-//			String text = webElement.getText();
-//			System.out.println("BBO DashBoard Current Buybacks Script" + text);
-//		}
+
 		Thread.sleep(2000);
 		driver.close();
 
@@ -1803,84 +1826,26 @@ public class Login extends BaseClass {
 		ac.moveToElement(dashBoard).perform();
 
 		Thread.sleep(2000);
+		
+		try {
+			
+			WebElement element = driver.findElement(By.xpath("//label[text()='IPO/NFO/BOND']//ancestor::li"));
+			ac.moveToElement(element).click().perform();
+			
+		} catch (Exception e) {
+			
+			WebElement element = driver.findElement(By.xpath("//label[text()='IPO/NFO/BOND']//ancestor::li"));
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+		       js.executeScript("arguments[0].click();", element);
 
-		driver.findElement(By.xpath("//label[text()='IPO/NFO/BOND']//ancestor::li")).click();
+			
+			
+		}
+
+		
 
 	}
-//
-//	@When("User Select Current IPO and Click Apply {string}")
-//	public void user_select_current_ipo_and_click_apply(String string) throws InterruptedException {
-//
-//		Thread.sleep(2000);
-//		Thread.sleep(2000);
-//		WebElement element2 = driver.findElement(By.xpath("//div[@class='funds_show']"));
-//		
-//		Actions ad = new Actions(driver);
-//		
-//		ad.moveToElement(element2).perform();
-//		Thread.sleep(2000);
-//		WebElement element = driver.findElement(By.xpath("//iframe[@class='iframe_window']"));
-//
-//		driver.switchTo().frame(element);
-//
-//		Thread.sleep(2000);
-//
-//		driver.findElement(By.xpath("(//input[@value='Apply'])[" + string + "]")).click();
-//		Thread.sleep(2000);
-//
-//	}
-//
-//	@When("User enter UPI ID , Category , Quantity \\(Lots) , BID Options and Price Cut")
-//	public void user_enter_upi_id_category_quantity_lots_bid_options_and_price_cut() throws InterruptedException {
-//
-//		driver.findElement(By.xpath("//input[@id='upiid']")).click();
-//		Thread.sleep(1000);
-//
-//		driver.findElement(By.xpath("//input[@id='upiid']")).sendKeys("kanniappanb7@oksbi");
-//		Thread.sleep(1000);
-//
-//		WebElement element = driver
-//				.findElement(By.xpath("//p[text()='Min Qty(Lot Size) : ']//following-sibling::span"));
-//		String text = element.getText();
-//
-//		System.out.println(text);
-//
-//		driver.findElement(By.xpath("(//input[@class='quantity'])[1]")).sendKeys(text);
-//		Thread.sleep(1000);
-//
-//		driver.findElement(By.xpath("(//input[@class='mc'])[1]")).click();
-//
-//		Thread.sleep(3000);
-//
-//	}
-//
-//	@When("User Click Agree and Click Submit")
-//	public void user_click_agree_and_click_submit() throws InterruptedException {
-//
-//		driver.findElement(By.xpath("(//input[@type='checkbox'])[7]")).click();
-//		Thread.sleep(3000);
-//
-//	}
-//
-//	@When("User Clik Yes For IPO Amount Payable")
-//	public void user_clik_yes_for_ipo_amount_payable() throws InterruptedException {
-//
-//		driver.findElement(By.xpath("//input[@value='SUBMIT']")).click();
-//		Thread.sleep(3000);
-//
-//		driver.findElement(By.xpath("//input[@value='yes']")).click();
-//
-//		Thread.sleep(10000);
-//
-////		driver.findElement(By.xpath("(//span[@class='pop_close2'])[2]")).click();
-////
-////		driver.findElement(By.xpath("(//span[@class='pop_close1'])[1]")).click();
-////
-////		driver.findElement(By.xpath("//span[@class='pop_close']")).click();
-//
-//		driver.switchTo().defaultContent();
-//
-//	}
+
 	
 	@When("User Select Current IPO and Click Apply {string}")
 	public void user_select_current_ipo_and_click_apply(String string) throws InterruptedException {
@@ -1898,17 +1863,15 @@ public class Login extends BaseClass {
 		driver.switchTo().frame(element);
 
 		Thread.sleep(2000);
+
+		WebElement element3 = driver.findElement(By.xpath("(//a[text()='Apply'])[1]"));
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-	       js.executeScript("window.scrollBy(0,500);");
-	       Thread.sleep(1000);
-	       js.executeScript("window.scrollBy(0,500);");
-	       Thread.sleep(1000);
-	       js.executeScript("window.scrollBy(0,500);");
+	       js.executeScript("arguments[0].scrollIntoView();", element3);
 	       Thread.sleep(1000);
 	       
-
-		driver.findElement(By.xpath("(//a[text()='Apply'])["+string+"]")).click();
-
+	       js.executeScript("arguments[0].click();", element3);
+	       Thread.sleep(1000);
+	       
 	}
 
 	@When("User enter UPI ID , Category , Quantity \\(Lots) , BID Options and Price Cut")
@@ -2648,6 +2611,17 @@ public class Login extends BaseClass {
 
 		driver.findElement(By.xpath("//a[text()='Bank']//parent::li")).click();
 		Thread.sleep(1000);
+		
+		try {
+			
+			driver.findElement(By.xpath("(//a[contains(text(),'Ok')])[1]")).click();
+			Thread.sleep(1000);
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
 
 		driver.findElement(By.xpath("(//img[@class='icon show_icon'])[2]")).click();
 
@@ -4430,10 +4404,40 @@ public class Login extends BaseClass {
 		js.executeScript("arguments[0].scrollIntoView(true);", element);
 		ac.moveToElement(element).perform();
 		Thread.sleep(3000);
+		
+		switch (string) {
+		case "MCXFO":
+			
+			WebElement element3 = driver.findElement(By.xpath("(//div[@class='md-dd-searchbox'])[1]"));
+			ac.moveToElement(element3).perform();
+			Thread.sleep(1000);
+			
+			WebElement element2 = driver.findElement(By.xpath("//ul[@id='spanSearchList']//descendant::div[contains(text(),'MCXFO')]"));
+			element2.click();
+			Thread.sleep(1000);
+			
+			break;
+			
+         case "BSEFO":
+			
+			WebElement element31 = driver.findElement(By.xpath("(//div[@class='md-dd-searchbox'])[1]"));
+			ac.moveToElement(element31).perform();
+			Thread.sleep(1000);
+			
+			WebElement element21 = driver.findElement(By.xpath("//ul[@id='spanSearchList']//descendant::div[contains(text(),'BSEFO')]"));
+			element21.click();
+			Thread.sleep(1000);
+			
+			break;
 
-		WebElement element2 = driver.findElement(By.xpath("//ul[@id='spanSearchList']//descendant::div[contains(text(),'"  + string + "')]"));
-		element2.click();
-		Thread.sleep(1000);
+		default:
+			
+			System.out.println("Invalid Your Condition");
+			
+			break;
+		}
+		
+		
 
 	}
 	
@@ -4653,10 +4657,10 @@ public class Login extends BaseClass {
 		WebElement element2 = driver.findElement(By.xpath("//iframe[contains(@src,'global')]"));
 
 		driver.switchTo().frame(element2);
-		WebElement element = driver.findElement(By.xpath("//li[text()='Global']"));
+		WebElement element = driver.findElement(By.xpath("//a[text()='nCoins']"));
 		String text = element.getText();
 
-		if (text.equalsIgnoreCase("global")) {
+		if (text.equalsIgnoreCase("nCoins")) {
 			System.out.println("Verify the global page loaded Successfully");
 		} else {
 			System.out.println("Verify the global page is Not loaded");
@@ -5860,12 +5864,27 @@ public void user_click_plus_one_by_one() throws InterruptedException, AWTExcepti
 	int size = li1.size();
 	System.out.println(size);
 
-	driver.close();
+	
+	
+	try {
+		
+		driver.close();
 
-	driver.switchTo().window(li1.get(0));
+		driver.switchTo().window(li1.get(0));
 
-	driver.switchTo().defaultContent();
-	driver.findElement(By.xpath("//label[text()='Tools']//parent::a")).click();
+		driver.switchTo().defaultContent();
+		
+		driver.findElement(By.xpath("//label[text()='Tools']//parent::a")).click();
+		
+	} catch (Exception e) {
+		
+		
+		driver.switchTo().window(li1.get(0));
+		
+		
+	}
+	
+	
 }
 
 
